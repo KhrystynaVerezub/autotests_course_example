@@ -2,7 +2,7 @@
 
 
 def even_sum(lst):
-    a = input().split()
+    # Здесь пишем код
     return sum_list
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
