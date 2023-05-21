@@ -13,7 +13,7 @@
 
 def multiplication_chain(num):
     count_multy = 0
-    while len(str(num)) > 1:  # пока число содержит более одной цифры. len - чтобы определять количество цифр в числе
+    while len(str(num)) > 1:  # пока число содержит более одной цифры. функиция len - чтобы определять количество цифр в числе
         multy = 1
         for digit in str(num):  # перемножаем все цифры числа между собой
             multy *= int(digit)
