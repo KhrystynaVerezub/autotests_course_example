@@ -29,4 +29,5 @@ assert number == 5, 'Переменная number должна иметь зна�
 assert string == 'Hello, dear friend', 'Переменная string должна иметь значение Hello, dear friend'
 assert global_changes() == (5, 'Hello, dear friend')
 
+
 print('Все ок')
