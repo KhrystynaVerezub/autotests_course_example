@@ -7,14 +7,21 @@
 
 
 def repeats(our_str):
-    new_str = ""  # создаем пустую строку
-    for i in our_str:  # проходим по каждому символу входной строки our_str
-        count = our_str.count(i)  # метод count подсчитывае количество вхождений текущего символа i в строку our_str
-        if count == 1:  # Если количество вхождений равно 1
-            new_str += i  # то добавляем текущий символ к нашей новой строке new_str
-        else:
-            new_str += f"{i}_{count}"  # если i больше 1 - то добавляем символ с числом его повторений
-        our_str = our_str.replace(i, "")  # после обработки символа - удаляем его из исходной строки our_str, чтоб не повторялся
+    letters_dict = {}  # создаем пустой словарь
+    new_str = ""  # создаем пустую строку, куда будем добавлять кол-во повторений символов
+
+    for j in range(len(our_str)):  # Цикл for проходит по индексам всех символов в строке our_str
+        """На каждом повторе цикла значение счетчика count для текущего символа our_str[j]
+        извлекается из словаря letters_dict с помощью метода .get()"""
+        count = letters_dict.get(our_str[j])
+
+        """если our_str[j] нет в словаре letters_dict, то метод get вернет значение None"""
+        if count is None:
+            count = 0
+
+        """для текущего символа обновляется значение в словаре letters_dict, увеличивая его на 1."""
+        letters_dict[our_str[j]] = count + 1
+        new_str = new_str + our_str[j] + "_" + str(count + 1)
 
     return new_str
 
