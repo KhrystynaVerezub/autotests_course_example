@@ -26,6 +26,61 @@
 # Здесь пишем код
 
 
+"""Создаем публичный класс и инициализируем атрибуты класса"""
+class PublicTransport:
+    def __init__(self, brand, engine_power, year, color, max_speed):
+        self.brand = brand
+        self._engine_power = engine_power
+        self.year = year
+        self.color = color
+        self.max_speed = max_speed
+
+    """вычисляем информацию о транспорте, которая возвращает строку с данными"""
+    @property
+    def info(self):
+        return f'{self.brand} {self.color} {self.year} года выпуска, мощность двигателя - {self._engine_power} л.с.'
+
+
+"""Создаем класс Bus, который наследуется от класса PublicTransport"""
+class Bus(PublicTransport):
+    """инициализируем атрибуты класса"""
+    def __init__(self, brand, engine_power, year, color, max_speed, passengers, park, fare):
+        """вызываем конструктор родительского класса с помощью функции super(),
+        которая передает аргументы родительскому классу"""
+        super().__init__(brand, engine_power, year, color, max_speed)
+        self.passengers = passengers
+        self.__park = park
+        self._fare = fare
+
+    """Определено свойство park, которое можно использовать для получения номера парка,
+        а также установки нового значения этого номера."""
+    @property
+    def park(self):
+        return self.__park
+
+    """Убеждаемся, что номер парка находится в диапазоне от 1000 до 9999."""
+    @park.setter
+    def park(self, value):
+        assert 1000 <= value <= 9999
+        self.__park = value
+
+
+"""Создаем класс Tram, который наследуется от класса PublicTransport"""
+class Tram(PublicTransport):
+    def __init__(self, brand, engine_power, year, color, max_speed, route, path, fare):
+        super().__init__(brand, engine_power, year, color, max_speed)
+        self.__route = route
+        self.path = path
+        self._fare = fare
+
+    """метод how_long можно использовать для вычисления времени проезда маршрута
+    с учитом того, что трамвай совершает 4 остановки на каждый километр пути"""
+    @property
+    def how_long(self):
+        return self.max_speed / (4 * self.path)
+
+
+
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
 transport = PublicTransport('Автомобиль', 500, 2040, 'Фиолетовый', 300)
 first_bus = Bus('ЛиАЗ', 210, 2015, 'Зеленый', 100, 70, 1232, 32)
